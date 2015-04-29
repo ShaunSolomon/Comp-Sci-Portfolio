@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2015 by Shaun_S_ (http://jsbin.com/nusoqo/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+<title>JS Bin</title>
+<style id="jsbin-css">
+/*For pictures, use use pixels for width and height instead of percentages.*/
+#ironimg{
+  position:absolute;
+    width:110px;
+    height:110px;
+    top:10%;
+    right:1000px;
+}
+#ironCount{
+  position:absolute;
+   right:1050px;
+}
+#goldimg{
+  position:absolute;
+    width:110px;
+    height:110px;
+    top:35%;
+    right:1000px;
+}
+#goldCount{
+   position:absolute;
+   top:30%;
+   right:1050px;
+}
+
+#rock{
+  position:absolute;
+   width:110px;
+   height:110px;
+   top:10%
+}
+#moneyDisplay{
+  position:absolute;
+  top:20px;
+}
+
+#diamondimg{
+  position:absolute;
+   width:125px;
+   height:110px;
+   top:35%;
+   right:785px;
+}
+#diamondCount{
+   position:absolute;
+   top:29%;
+   right:815px;
+}
+#rubyimg{
+  position:absolute;
+   width:90px;
+   height:90px;
+   top:12%;
+   right:800px;
+}
+
+#rubyCount{
+   position:absolute;
+   top:5%;
+   right:820px;
+}
+#navbar{
+	text-align:center;
+}
+
+#navbar li{
+	display:inline-block;
+    border: 2px solid black;
+    padding: 5px;
+}
+
+
+
+#upgradeimg{
+  position:absolute;
+  width:160px;
+  height:160px;
+  top:240px;
+  right:1180px;
+  
+}
+#upgradeWords{
+  position:absolute;
+  top:185px;
+  right:1160px;
+}
+#lackOfMoney{
+  position:absolute;
+  top:315px;
+  right:130px;
+}
+/*At fullscreen, the pictures will go crazy if you use percentages.*/
+</style>
+</head>
+<body>
+  
+  <button type="button"id="sellall">
+    Sell all</button>
+      
+  <p id = "moneyDisplay">Money:</p>
+  
+  <div id = "iron">
+          <p id = "ironCount">Iron:</p>
+             <img       src="http://catalog.wlimg.com/1/1866979/full-images/iron-ore-lumps-1126368.jpg" id="ironimg">
+      </div>
+  
+  <div id = gold>
+          <p id = "goldCount">Gold</p>
+             <img       src="http://media.liveauctiongroup.net/i/13051/13390802_1.jpg?v=8CF4782B3292CF0" id="goldimg">
+      </div>
+
+  <img src ="http://upload.wikimedia.org/wikipedia/commons/7/72/DirkvdM_rocks.jpg" id="rock">
+  
+  <div id = diamond>
+          <p id = "diamondCount">Diamond:</p>
+             <img       src="http://www.rsc.org/images/FEATURE_DIAMOND_pg48_410_tcm18-206325.jpg" id="diamondimg">
+      </div>
+
+  
+               
+  <div id = Ruby>
+          <p id = "rubyCount">Ruby:</p>
+             <img       src="http://learn-rails.com/images/ruby.png"id="rubyimg">
+      </div>
+  
+  
+  <div id = "upgrade1">
+    <p id="upgradeWords">Upgrade your pick for 200 coins</p>
+    <img       src="http://thumbs1.ebaystatic.com/d/l225/m/mvUuiVbQenqiSxOddw6x1oQ.jpg" id="upgradeimg">
+    
+  </div>
+  
+  <div id="lackOfMoney" style="display:none;">
+    <p>You dont have <br>enough money.</p>
+  </div>
+  <div id="navbar">
+	<ul>
+    	<li><a href="index.html"> Intro Page </a></li>
+    	<li><a href="html.html"> HTML Page </a></li>
+        <li><a href="filename.html">Words to Click </a></li>
+        <li><a href="filename.html">Words to Click </a></li>
+        <li><a href="filename.html">Words to Click </a></li>
+    </ul>
+    
+</div>
+  
+  <script id="jsbin-javascript">
+var money = 0;
+
+var iron = {
+ sellValue:5,
+ chance: 0.8,
+ quantity: 0
+};
+
+var gold = {
+ sellValue:10,
+ chance: 0.3,
+ quantity: 0
+};
+
+var diamond = {
+  sellValue: 50,
+  chance: 0.02,
+  quantity: 0
+};
+
+var ruby = {
+  sellValue:30,
+  chance: 0.06,
+  quantity: 0
+};
+
+//The iron and gold stuff//
+update();
+//rock swag//
+var rock= document.getElementById("rock"); rock.addEventListener("click", rockClick,false);
+//end rock swag :c//
+
+//adding stuff//
+function rockClick() {
+        if (Math.random() <= iron.chance){
+          iron.quantity += 1;
+          
+        }
+        
+        if (Math.random() <= gold.chance){
+          iron.quantity += 1;
+        
+        }
+ 
+        if (Math.random() <= diamond.chance ) {
+          diamond.quantity += 1;
+          
+         }
+ 
+        if (Math.random() <= ruby.chance ) {
+          ruby.quantity += 1;
+          
+        }
+  update();
+  //end adding stuff//
+}
+//end of iron and gold//
+
+
+//sell all button//
+
+document.getElementById("moneyDisplay").innerHTML = "Money: "+money;
+
+var sellAll= document.getElementById("sellall");
+sellall.addEventListener("click", cashOut,false);
+function cashOut(){
+  var ironValue=iron.quantity*iron.sellValue;
+  var goldValue=gold.quantity*gold.sellValue;
+  var diamondValue=diamond.quantity*diamond.sellValue;
+  var rubyValue=ruby.quantity*ruby.sellValue;
+  var worth=ironValue+goldValue+diamondValue+rubyValue;
+  money+=worth;
+  iron.quantity=0;
+  gold.quantity=0;
+  diamond.quantity=0;
+  ruby.quantity=0;
+  update();
+}
+function update(){
+document.getElementById("moneyDisplay").innerHTML = "Money: "+money;
+document.getElementById("ironCount").innerHTML = "Iron: "+iron.quantity;
+document.getElementById("goldCount").innerHTML = "Gold: "+gold.quantity;
+document.getElementById("diamondCount").innerHTML = "Diamond: "+diamond.quantity;
+document.getElementById("rubyCount").innerHTML = "Ruby: "+ruby.quantity;
+}
+
+//end sell all//
+
+//upgrade//
+
+
+var upgrade= document.getElementById("upgradeimg"); upgrade.addEventListener("click", upgradeGot,false);
+
+function upgradeGot(){
+  if (money >= 200){
+    money-=200;
+    diamond.chance = 0.08;
+    update();
+  }
+  else{
+ document.getElementById("lackOfMoney").style.display="block";
+  }
+}
+
+
+
+
+//end upgrade//
+</script>
+</body>
+</html>
+

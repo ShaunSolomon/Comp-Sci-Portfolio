@@ -9,11 +9,17 @@ Released under the MIT license: http://jsbin.mit-license.org
 -->
 <meta name="robots" content="noindex">
 <html>
-<head>
+<head>  
+    <style> #navbar li{
+	display:inline-block;
+    border: 2px solid black;
+           padding: 5px;}</style>
+    
   <meta charset="utf-8">
 <title>JS Bin</title>
 <style id="jsbin-css">
 /*For pictures, use use pixels for width and height instead of percentages.*/
+      
 #ironimg{
   position:absolute;
     width:110px;
@@ -102,8 +108,9 @@ Released under the MIT license: http://jsbin.mit-license.org
 #lackOfMoney{
   position:absolute;
   top:315px;
-  right:130px;
+  right:130px; 
 }
+      
 /*At fullscreen, the pictures will go crazy if you use percentages.*/
 </style>
 </head>
@@ -157,6 +164,20 @@ Released under the MIT license: http://jsbin.mit-license.org
         <li><a href="filename.html">Words to Click </a></li>
     </ul>
     
+</div> 
+   <div id="navbar">
+	<ul>
+    	<li><a href="index.html"> Intro Page </a></li>
+        <li><a href="rockpaperscissors.html">Rock,Paper,Scissors</a></li>
+        <li><a href="diamondhunt.html">Diamond Hunt</a></li>
+        <li><a href="snakegame.html">Snake Game</a></li>
+        <li><a href="htmlpage.html">HTML Information Website</a></li>
+        <li><a href="aboutmepage.html">About Me Website</a></li>
+        <li><a href="mywebsiteintro.html">Overview of the Website</a></li>
+        <li><a href="computerhardwarepage.html">Computer Hardware Website</a></li>
+        <li><a href="randomgroupgenerator.html">Random Group Generator</a></li> 
+        <li><a href="vindiniumbot.html">Vindinium</a></li>
+    </ul>
 </div>
   
   <script id="jsbin-javascript">
@@ -263,7 +284,6 @@ function upgradeGot(){
  document.getElementById("lackOfMoney").style.display="block";
   }
 }
-
 
 
 
